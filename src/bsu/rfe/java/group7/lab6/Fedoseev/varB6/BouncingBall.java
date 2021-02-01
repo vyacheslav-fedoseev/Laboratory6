@@ -3,6 +3,7 @@ package bsu.rfe.java.group7.lab6.Fedoseev.varB6;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 
 public class BouncingBall implements Runnable {
     // Максимальный радиус, который может иметь мяч
@@ -109,6 +110,8 @@ public class BouncingBall implements Runnable {
                 2*radius, 2*radius);
         canvas.draw(ball);
         canvas.fill(ball);
+        canvas.setColor(Color.BLACK);
+        canvas.drawString(String.valueOf(radius),(float)(x + radius) ,(float)(y + radius));
     }
 }
 

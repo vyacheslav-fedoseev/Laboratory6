@@ -3,12 +3,8 @@ package bsu.rfe.java.group7.lab6.Fedoseev.varB6;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
+
 @SuppressWarnings("serial")
 
 public class MainFrame extends JFrame {
@@ -18,6 +14,7 @@ public class MainFrame extends JFrame {
     private static final int HEIGHT = 500;
     private JMenuItem pauseMenuItem;
     private JMenuItem resumeMenuItem;
+    private JMenuItem effectMenuItem;
     // Поле, по которому прыгают мячи
     private Field field = new Field();
     // Конструктор главного окна приложения
@@ -67,6 +64,17 @@ public class MainFrame extends JFrame {
         };
         resumeMenuItem = controlMenu.add(resumeAction);
         resumeMenuItem.setEnabled(false);
+
+        JMenu effectMenu = new JMenu("Эффект");
+        Action doEffectAction = new AbstractAction("Мы-команда") {
+            public void actionPerformed(ActionEvent e) {
+                String str = JOptionPane.showInputDialog(MainFrame.this,"Введите идентификатор",
+                        "Эффект \"мы-команда\"",JOptionPane.QUESTION_MESSAGE);
+            }
+        };
+        menuBar.add(effectMenu);
+        effectMenu.add(doEffectAction);
+
         // Добавить в центр граничной компоновки поле Field
         getContentPane().add(field, BorderLayout.CENTER);
     }
