@@ -39,6 +39,7 @@ public class MainFrame extends JFrame {
                     // Ни один из пунктов меню не являются
                     // доступными - сделать доступным "Паузу"
                     pauseMenuItem.setEnabled(true);
+                    effectMenuItem.setEnabled(true);
                 }
             }
         };
@@ -70,11 +71,14 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String str = JOptionPane.showInputDialog(MainFrame.this,"Введите идентификатор",
                         "Эффект \"мы-команда\"",JOptionPane.QUESTION_MESSAGE);
+                if (str != null) field.pauseOfTheSame(str);
+                pauseMenuItem.setEnabled(true);
+                resumeMenuItem.setEnabled(true);
             }
         };
         menuBar.add(effectMenu);
-        effectMenu.add(doEffectAction);
-
+        effectMenuItem = effectMenu.add(doEffectAction);
+        effectMenuItem.setEnabled(false);
         // Добавить в центр граничной компоновки поле Field
         getContentPane().add(field, BorderLayout.CENTER);
     }

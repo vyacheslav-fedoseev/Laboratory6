@@ -9,7 +9,7 @@ public class BouncingBall implements Runnable {
     // Максимальный радиус, который может иметь мяч
     private static final int MAX_RADIUS = 40;
     // Минимальный радиус, который может иметь мяч
-    private static final int MIN_RADIUS = 3;
+    private static final int MIN_RADIUS = 30;
     // Максимальная скорость, с которой может летать мяч
     private static final int MAX_SPEED = 15;
     private Field field;
@@ -22,6 +22,10 @@ public class BouncingBall implements Runnable {
     private int speed;
     private double speedX;
     private double speedY;
+
+    public int getIDofBall() {
+        return radius;
+    }
     // Конструктор класса BouncingBall
     public BouncingBall(Field field) {
         // Необходимо иметь ссылку на поле, по которому прыгает мяч,

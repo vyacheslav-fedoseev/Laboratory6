@@ -13,6 +13,8 @@ import javax.swing.Timer;
 public class Field extends JPanel {
     // Флаг приостановленности движения
     private boolean paused;
+    private boolean pausedTheSame;
+    private String str;
     // Динамический список скачущих мячей
     private ArrayList<BouncingBall> balls = new ArrayList<BouncingBall>(10);
     // Класс таймер отвечает за регулярную генерацию событий ActionEvent
@@ -47,6 +49,7 @@ public class Field extends JPanel {
         // Всю инициализацию положения, скорости, размера, цвета
         // BouncingBall выполняет сам в конструкторе
         balls.add(new BouncingBall(this));
+        pausedTheSame = false;
     }
     // Метод синхронизированный, т.е. только один поток может
     // одновременно быть внутри
@@ -58,7 +61,7 @@ public class Field extends JPanel {
     // одновременно быть внутри
     public synchronized void resume() {
         // Выключить режим паузы
-        paused = false;
+        paused = pausedTheSame = false;
         // Будим все ожидающие продолжения потоки
         notifyAll();
     }
@@ -70,6 +73,14 @@ public class Field extends JPanel {
             // Если режим паузы включен, то поток, зашедший
             // внутрь данного метода, засыпает
             wait();
+        } else if (pausedTheSame && !str.equals(String.valueOf(ball.getIDofBall()))) {
+            wait();
         }
+    }
+    // Синхронизированный метод, который позволяет останавливать мяч,
+    // если его идентификатор(размер) совпадает с входящим параметром(строка)
+    public synchronized void pauseOfTheSame(String str) {
+        this.str = str;
+        pausedTheSame = true;
     }
 }
