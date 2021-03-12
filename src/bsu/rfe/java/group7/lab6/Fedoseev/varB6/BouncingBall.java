@@ -13,6 +13,7 @@ public class BouncingBall implements Runnable {
     // Максимальная скорость, с которой может летать мяч
     private static final int MAX_SPEED = 15;
     private Field field;
+    private String ID;
     private int radius;
     private Color color;
     // Текущие координаты мяча
@@ -23,14 +24,15 @@ public class BouncingBall implements Runnable {
     private double speedX;
     private double speedY;
 
-    public int getIDofBall() {
-        return radius;
+    public String getIDofBall() {
+        return ID;
     }
     // Конструктор класса BouncingBall
-    public BouncingBall(Field field) {
+    public BouncingBall(Field field,String Id) {
         // Необходимо иметь ссылку на поле, по которому прыгает мяч,
         // чтобы отслеживать выход за его пределы
         // через getWidth(), getHeight()
+        this.ID = Id;
         this.field = field;
         // Радиус мяча случайного размера
         radius = new Double(Math.random()*(MAX_RADIUS -
@@ -115,7 +117,7 @@ public class BouncingBall implements Runnable {
         canvas.draw(ball);
         canvas.fill(ball);
         canvas.setColor(Color.BLACK);
-        canvas.drawString(String.valueOf(radius),(float)(x + radius) ,(float)(y + radius));
+        canvas.drawString(String.valueOf(ID),(float)(x + radius) ,(float)(y + radius));
     }
 }
 

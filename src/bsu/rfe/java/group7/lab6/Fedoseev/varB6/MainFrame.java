@@ -3,6 +3,7 @@ package bsu.rfe.java.group7.lab6.Fedoseev.varB6;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.geom.Point2D;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,10 @@ public class MainFrame extends JFrame {
         JMenu ballMenu = new JMenu("Мячи");
         Action addBallAction = new AbstractAction("Добавить мяч") {
             public void actionPerformed(ActionEvent event) {
-                field.addBall();
+                String Id = JOptionPane.showInputDialog(MainFrame.this,"Введите идентификатор",
+                        "Присовение идентификатора",JOptionPane.QUESTION_MESSAGE);
+
+                field.addBall(Id);
                 if (!pauseMenuItem.isEnabled() &&
                         !resumeMenuItem.isEnabled()) {
                     // Ни один из пунктов меню не являются
@@ -90,3 +94,4 @@ public class MainFrame extends JFrame {
         frame.setVisible(true);
     }
 }
+

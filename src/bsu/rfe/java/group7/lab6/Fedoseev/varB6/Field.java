@@ -44,11 +44,11 @@ public class Field extends JPanel {
         }
     }
     // Метод добавления нового мяча в список
-    public void addBall() {
+    public void addBall(String Id) {
         //Заключается в добавлении в список нового экземпляра BouncingBall
         // Всю инициализацию положения, скорости, размера, цвета
         // BouncingBall выполняет сам в конструкторе
-        balls.add(new BouncingBall(this));
+        balls.add(new BouncingBall(this,Id));
         pausedTheSame = false;
     }
     // Метод синхронизированный, т.е. только один поток может
